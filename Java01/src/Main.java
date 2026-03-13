@@ -1,11 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        ERyder bike1 = new ERyder("001",     80, true, 1000,"ABCD","12345");
-        bike1.printRideDetails(20);
-        bike1.ride();
-
-        ERyder bike2 = new ERyder("002",    60, false, 2000,"EFGH","67890");
-        bike2.printRideDetails(30);
-        bike2.ride();
+        String sent1 = "I was very satisfied with the service.";
+        String sent2 = "The e-Bike is quite comfortable to ride.";
+        String sent3 = "The battery life of the e-Bike is impressive.";
+        String sent4 = "The customer support was helpful and responsive.";
+        String sent5 = "I would recommend this e-Bike to my friends and family.";
+        Feedback feedback = new Feedback("John", "Doe", "john.doe@example.com");
+        feedback.analyzeFeedback(true, sent1, sent2, sent3, sent4, sent5);
+        System.out.println(feedback);
     }
 }
