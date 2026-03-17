@@ -4,4 +4,5 @@ public class Main {
         user.registration();
         System.out.println(user);
     }
+
 }
