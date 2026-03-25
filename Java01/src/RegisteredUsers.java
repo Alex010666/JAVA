@@ -21,6 +21,7 @@ public class RegisteredUsers {
         this.lastThreeTrips = lastThreeTrips;
     }
 
+
     public String getFullName() {
         return fullName;
     }
