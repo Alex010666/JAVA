@@ -42,6 +42,7 @@
             scanner.nextLine();
 
 
+
             for (int i = 0; i < numUsers; i++) {
                 System.out.println("\n--- Adding User " + (i + 1) + " ---");
                 System.out.print("Enter full name: ");

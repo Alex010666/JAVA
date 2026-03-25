@@ -22,6 +22,7 @@ public class RegisteredUsers {
     }
 
 
+
     public String getFullName() {
         return fullName;
     }
