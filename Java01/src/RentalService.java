@@ -9,6 +9,7 @@ public class RentalService {
         this.bikeService = bikeService;
     }
 
+
     public boolean startRental(String bikeId, String userId) {
         Bike bike = bikeService.findBikeById(bikeId);
         if (bikeService.reserveBike(bike)) {

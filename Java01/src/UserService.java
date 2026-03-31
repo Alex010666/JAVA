@@ -3,7 +3,6 @@ import java.util.Iterator;
 public class UserService {
     private final List<RegisteredUsers> registeredUsersList;
 
-
     public UserService(List<RegisteredUsers> registeredUsersList) {
         this.registeredUsersList = registeredUsersList;
     }

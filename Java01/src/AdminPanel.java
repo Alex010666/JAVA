@@ -23,6 +23,7 @@ public class AdminPanel {
             System.out.println("6. Demo the Bike Rental System");
             System.out.print("Enter your choice: ");
 
+
             int choice = scanner.nextInt();
             scanner.nextLine();
 
