@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,8 +6,11 @@ public class AdminPanel {
     private final UserService userService;
     private List<RegisteredUsers> registeredUsersList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    private final BikeService bikeService;
+
     public AdminPanel() {
         this.userService = new UserService(registeredUsersList);
+        this.bikeService = new BikeService(new BikeDatabase());
     }
 
     public void userManagementOptions() {
@@ -21,8 +23,9 @@ public class AdminPanel {
             System.out.println("4. Update Registered Users");
             System.out.println("5. EXIT");
             System.out.println("6. Demo the Bike Rental System");
+            System.out.println("7. View System Logs");
+            System.out.println("8. Manage Pending Bike Requests");
             System.out.print("Enter your choice: ");
-
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -39,8 +42,36 @@ public class AdminPanel {
                     BikeRental bikeRental = new BikeRental();
                     bikeRental.simulateApplicationInput();
                     break;
+                case 7:
+                    bikeService.viewSystemLogs();
+                    break;
+                case 8:
+                    manageBikeRequests();
+                    break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private void manageBikeRequests() {
+        while (true) {
+            System.out.println("\n===== MANAGE PENDING BIKE REQUESTS =====");
+            System.out.println("1. View Queue");
+            System.out.println("2. Remove First Request");
+            System.out.println("3. Back to Main Menu");
+            System.out.print("Enter choice: ");
+            int c = scanner.nextInt();
+            scanner.nextLine();
+
+            if (c == 1) {
+                bikeService.viewRequestQueue();
+            } else if (c == 2) {
+                bikeService.removeFirstRequest();
+            } else if (c == 3) {
+                break;
+            } else {
+                System.out.println("Invalid option!");
             }
         }
     }
@@ -91,7 +122,6 @@ public class AdminPanel {
                         .append(", Feedback: ").append(feedback);
                 trips[j] = tripSb.toString();
             }
-
 
             RegisteredUsers newUser = new RegisteredUsers(fullName, email, dob, cardNum, expiry, provider, cvv, userType, trips);
             userService.addUser(newUser);
@@ -154,7 +184,6 @@ public class AdminPanel {
         String newCvv = scanner.nextLine();
         System.out.print("Type new user type: ");
         String newType = scanner.nextLine();
-
 
         userService.updateUser(targetUser, newName, newDob, newCard, newExpiry, newProvider, newCvv, newType);
         System.out.println("User updated successfully!");
