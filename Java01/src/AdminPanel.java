@@ -39,8 +39,20 @@ public class AdminPanel {
                     System.out.println("Exiting program...");
                     return;
                 case 6:
-                    BikeRental bikeRental = new BikeRental();
-                    bikeRental.simulateApplicationInput();
+                    if (userService.isUserListEmpty()) {
+                        System.out.println("No users available! Please add a user first.");
+                        break;
+                    }
+                    System.out.print("Enter the email of the user to demo: ");
+                    String demoEmail = scanner.nextLine();
+                    RegisteredUsers demoUser = userService.findUserByEmail(demoEmail);
+
+                    if (demoUser != null) {
+                        BikeRental bikeRental = new BikeRental();
+                        bikeRental.simulateApplicationInput();
+                    } else {
+                        System.out.println("User not found!");
+                    }
                     break;
                 case 7:
                     bikeService.viewSystemLogs();
@@ -123,8 +135,9 @@ public class AdminPanel {
                 trips[j] = tripSb.toString();
             }
 
-            RegisteredUsers newUser = new RegisteredUsers(fullName, email, dob, cardNum, expiry, provider, cvv, userType, trips);
-            userService.addUser(newUser);
+            RegisteredUsers newUser = userService.addNewUser(
+                    fullName, email, dob, cardNum, expiry, provider, cvv, userType, trips
+            );
             System.out.println("User added successfully!");
         }
     }

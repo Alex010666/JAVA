@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Iterator;
+
 public class UserService {
     private final List<RegisteredUsers> registeredUsersList;
 
@@ -7,16 +8,13 @@ public class UserService {
         this.registeredUsersList = registeredUsersList;
     }
 
-
     public void addUser(RegisteredUsers newUser) {
         registeredUsersList.add(newUser);
     }
 
-
     public List<RegisteredUsers> getAllUsers() {
         return registeredUsersList;
     }
-
 
     public boolean removeUser(String email) {
         boolean found = false;
@@ -54,5 +52,21 @@ public class UserService {
 
     public boolean isUserListEmpty() {
         return registeredUsersList.isEmpty();
+    }
+
+    public RegisteredUsers addNewUser(String fullName, String emailAddress, String dateOfBirth,
+                                            String cardNumber, String cardExpiryDate, String cardProvider,
+                                            String cvv, String userType, String[] lastThreeTrips) {
+        RegisteredUsers newUser;
+        if (userType.equalsIgnoreCase("VIP")) {
+            newUser = new VIPUser(fullName, emailAddress, dateOfBirth, cardNumber,
+                    cardExpiryDate, cardProvider, cvv, userType, lastThreeTrips);
+        } else {
+            newUser = new RegularUser(fullName, emailAddress, dateOfBirth, cardNumber,
+                    cardExpiryDate, cardProvider, cvv, userType, lastThreeTrips);
+        }
+
+        registeredUsersList.add(newUser);
+        return newUser;
     }
 }

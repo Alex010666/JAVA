@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +6,6 @@ public class ActiveRental {
     private List<ActiveRental> activeRentalsList = new ArrayList<>();
     private String bikeID;
     private String userID;
-
     public ActiveRental(String bikeID, String userID) {
         this.bikeID = bikeID;
         this.userID = userID;

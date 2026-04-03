@@ -71,7 +71,7 @@ public class BikeRental {
                     bike.setLastUsedTime(this.tripStartTime);
                     System.out.println(": Reserving the bike with the (bikeID). Please following the on-screen instructions\n" +
                             "to locate the bike and start your pleasant journey.");
-                    activeRental = new ActiveRental(bikeID, emailAddress, tripStartTime);
+                    activeRental = new ActiveRental(bikeID, emailAddress);
                     activeRentalsList.add(activeRental);
                 }
             }
